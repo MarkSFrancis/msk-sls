@@ -1,5 +1,5 @@
 {
-  "app": "python3 app.py",
+  "app": "sbt infrastructure/run",
   "watch": {
     "include": [
       "**"
@@ -7,10 +7,6 @@
     "exclude": [
       "README.md",
       "cdk*.json",
-      "requirements*.txt",
-      "source.bat",
-      "**/__init__.py",
-      "python/__pycache__",
       "tests"
     ]
   },
