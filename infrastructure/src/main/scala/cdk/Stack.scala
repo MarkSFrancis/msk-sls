@@ -25,6 +25,7 @@ class MskSlsStack(parent: awscdk.App, id: String, props: awscdk.StackProps)
           "-XX:+TieredCompilation -XX:TieredStopAtLevel=1"
       ).asJava
     )
+    .architecture(Architecture.ARM_64)
     .handler("HelloHandler::handler")
     .timeout(awscdk.Duration.seconds(30))
     .build
