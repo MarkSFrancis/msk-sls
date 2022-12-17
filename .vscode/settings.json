@@ -1,4 +1,7 @@
 {
   "python.analysis.typeCheckingMode": "strict",
-  "python.formatting.provider": "black"
+  "python.formatting.provider": "black",
+  "files.watcherExclude": {
+    "**/target": true
+  }
 }

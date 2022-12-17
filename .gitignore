@@ -8,3 +8,22 @@ __pycache__
 # CDK asset staging directory
 .cdk.staging
 cdk.out
+
+*.class
+*.log
+
+# sbt
+target/
+/project/project/
+/project/target/
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+# Generated Metals (Scala Language Server) files
+# Reference: https://scalameta.org/metals/
+.bsp
+.metals/
+.bloop/
+project/metals.sbt
+.scala-build/

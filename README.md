@@ -1,57 +1,23 @@
 # MSK SLS
-Serverless MSK proof of concept, using python as much as possible
+Serverless MSK proof of concept, using scala as much as possible
 
 # Architecture
 
 HTTP endpoint -> API Gateway -> lambda -> MSK queue -> lambda -> dynamo-db
 
-# Welcome to your CDK Python project!
+# Scope
 
-This is a blank project for CDK development with Python.
+## What's in scope?
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+- API Gateway
+- Lambda backing for the API gateway
+- Putting some data based on the API request into Kafka
+- An async workflow based on a Lambda with a Kafka trigger, which places the data into dynamodb
 
-This project is set up like a standard Python project.  The initialization
-process also creates a virtualenv within this project, stored under the `.venv`
-directory.  To create the virtualenv it assumes that there is a `python3`
-(or `python` for Windows) executable in your path with access to the `venv`
-package. If for any reason the automatic creation of the virtualenv fails,
-you can create the virtualenv manually.
+## What's not in scope?
 
-To manually create a virtualenv on MacOS and Linux:
-
-```
-$ python3 -m venv .venv
-```
-
-After the init process completes and the virtualenv is created, you can use the following
-step to activate your virtualenv.
-
-```
-$ source .venv/bin/activate
-```
-
-If you are a Windows platform, you would activate the virtualenv like this:
-
-```
-% .venv\Scripts\activate.bat
-```
-
-Once the virtualenv is activated, you can install the required dependencies.
-
-```
-$ pip install -r requirements.txt
-```
-
-At this point you can now synthesize the CloudFormation template for this code.
-
-```
-$ cdk synth
-```
-
-To add additional dependencies, for example other CDK libraries, just add
-them to your `setup.py` file and rerun the `pip install -r requirements.txt`
-command.
+- Custom domain name for the API Gateway
+- Connection to datadog
 
 ## Useful commands
 
