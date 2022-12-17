@@ -5,6 +5,7 @@ import software.amazon.awscdk
 import awscdk.CfnOutput
 import awscdk.services.lambda._
 import awscdk.services.apigateway._
+import scala.collection.JavaConverters._
 
 class MskSlsStack(parent: awscdk.App, id: String, props: awscdk.StackProps)
     extends Stack(parent, id, props) {
@@ -14,13 +15,18 @@ class MskSlsStack(parent: awscdk.App, id: String, props: awscdk.StackProps)
   val helloLambda = Function.Builder
     .create(this, "HelloHandler")
     .runtime(Runtime.JAVA_11)
-    .architecture(Architecture.ARM_64)
+    .memorySize(512)
     .code(
-      Code.fromAsset(
-        s"app/HelloHandler/target/scala-${scalaVersion}/HelloHandler-assembly-1.0.jar"
-      )
+      LambdaUtils.getCode("HelloHandler", scalaVersion)
+    )
+    .environment(
+      Map(
+        "JAVA_TOOL_OPTIONS" ->
+          "-XX:+TieredCompilation -XX:TieredStopAtLevel=1"
+      ).asJava
     )
     .handler("HelloHandler::handler")
+    .timeout(awscdk.Duration.seconds(30))
     .build
 
   val gateway = LambdaRestApi.Builder

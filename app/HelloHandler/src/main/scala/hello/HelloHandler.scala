@@ -7,8 +7,6 @@ object HelloHandler {
       event: APIGatewayProxyRequestEvent,
       context: Context
   ): APIGatewayProxyResponseEvent = {
-    println(event)
-
     val query = event.getQueryStringParameters()
 
     val body = if (query.get("name") != null) {

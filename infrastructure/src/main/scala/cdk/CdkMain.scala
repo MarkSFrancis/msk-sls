@@ -17,4 +17,6 @@ object CdkMain extends scala.App {
       )
       .build
   );
+
+  app.synth
 }
