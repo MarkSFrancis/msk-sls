@@ -27,3 +27,6 @@ hs_err_pid*
 .bloop/
 project/metals.sbt
 .scala-build/
+
+# IntelliJ
+.idea/

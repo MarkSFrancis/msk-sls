@@ -4,19 +4,22 @@ import scala.collection.JavaConverters._
 
 object HelloHandler {
   def handler(
-      event: APIGatewayProxyRequestEvent,
+      event: APIGatewayV2HTTPEvent,
       context: Context
-  ): APIGatewayProxyResponseEvent = {
+  ): APIGatewayV2HTTPResponse = {
     val query = event.getQueryStringParameters()
 
-    val body = if (query.get("name") != null) {
+    val body = if (query != null && query.containsKey("name")) {
       s"Hello ${query.get("name")}!"
     } else {
       "Hello world!"
     }
 
-    new APIGatewayProxyResponseEvent()
+    APIGatewayV2HTTPResponse
+      .builder()
+      .withStatusCode(200)
       .withBody(body)
       .withHeaders(Map("Content-Type" -> "text/plain").asJava)
+      .build()
   }
 }
